@@ -5,3 +5,8 @@ This is the examples repo for my stunning [Sun Valley ttk theme](https://github.
 ## Simple example
 
 ![screenshot](https://github.com/rdbende/Sun-Valley-ttk-examples/blob/master/Simple%20example/Screenshot.png)
+
+## Invalid entry state
+
+![invalid entry](https://github.com/rdbende/Sun-Valley-ttk-examples/blob/master/Invalid%entry/Screenshot_invalid.png)
+![valid entry](https://github.com/rdbende/Sun-Valley-ttk-examples/blob/master/Invalid%entry/Screenshot_valid.png)
