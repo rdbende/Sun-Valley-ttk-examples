@@ -8,8 +8,8 @@ This is the examples repo for my stunning [Sun Valley ttk theme](https://github.
 
 ## Invalid entry state
 
-![invalid entry](https://github.com/rdbende/Sun-Valley-ttk-examples/blob/master/Invalid%entry/Screenshot_invalid.png)
-![valid entry](https://github.com/rdbende/Sun-Valley-ttk-examples/blob/master/Invalid%entry/Screenshot_valid.png)
+![invalid entry](https://github.com/rdbende/Sun-Valley-ttk-examples/blob/master/Invalid%20entry/Screenshot_invalid.png)
+![valid entry](https://github.com/rdbende/Sun-Valley-ttk-examples/blob/master/Invalid%20entry/Screenshot_valid.png)
 
 ## Calculator
 
