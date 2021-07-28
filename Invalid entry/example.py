@@ -1,14 +1,13 @@
 """
 Example script for the invalid entry state
 Author: rdbende
-License: MIT license
+License: GNU GPLv3 license
 """
 
 
+import re
 import tkinter as tk
 from tkinter import ttk
-
-import re
 
 
 class App(ttk.Frame):

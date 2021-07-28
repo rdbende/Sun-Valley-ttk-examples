@@ -1,7 +1,7 @@
 """
 Example script for a nice calculator
 Author: rdbende
-License: MIT license
+License: GNU GPLv3 license
 """
 
 

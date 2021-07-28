@@ -1,7 +1,7 @@
 """
 Example script for testing the Sun Valley theme
 Author: rdbende
-License: MIT license
+License: GNU GPLv3 license
 Source: https://github.com/rdbende/ttk-widget-factory
 """
 
