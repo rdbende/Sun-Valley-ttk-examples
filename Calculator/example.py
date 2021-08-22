@@ -7,7 +7,7 @@ License: GNU GPLv3 license
 
 import tkinter as tk
 from functools import partial
-from tkinter import ttk as ttk
+from tkinter import ttk
 
 
 class App(ttk.Frame):
