@@ -15,7 +15,7 @@ class App(ttk.Frame):
         ttk.Frame.__init__(self)
 
         # Make the app responsive
-        for index in [0, 1, 2, 3]:
+        for index in range(4):
             self.columnconfigure(index=index, weight=1)
             self.rowconfigure(index=index + 1, weight=1)
 
