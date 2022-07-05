@@ -1,18 +1,15 @@
-"""
-Example script for a nice calculator
-Author: rdbende
-License: GNU GPLv3 license
-"""
-
+"""A simple but kinda useless calculator"""
 
 import tkinter as tk
 from functools import partial
 from tkinter import ttk
 
+import sv_ttk
+
 
 class App(ttk.Frame):
     def __init__(self, parent):
-        ttk.Frame.__init__(self)
+        ttk.Frame.__init__(self, parent)
 
         # Make the app responsive
         for index in range(4):
@@ -34,7 +31,7 @@ class App(ttk.Frame):
             ttk.Button(
                 self,
                 text=key,
-                style="Accent.TButton" if key == "=" else "TButton",
+                style="TButton" if key != "=" else "Accent.TButton",
                 command=partial(self.button_pressed, key),
             ).grid(row=index % 4 + 1, column=index // 4, sticky="nsew", padx=2, pady=2)
 
@@ -47,24 +44,29 @@ class App(ttk.Frame):
             self.result.set(self.result.get() + key)
 
 
-if __name__ == "__main__":
+def main():
     root = tk.Tk()
     root.title("Calculator")
     root.geometry("300x300")
-    root.attributes("-topmost", True)  # It stays always on top of other windows
+    root.attributes("-topmost", True)  # Make it be always-on-top
 
-    # Simply set the theme
-    root.tk.call("source", "sun-valley.tcl")
-    root.tk.call("set_theme", "dark")
+    sv_ttk.set_theme("dark")
 
     app = App(root)
     app.pack(fill="both", expand=True)
 
+    root.update_idletasks()  # Make sure every screen redrawing is done
+
+    width, height = root.winfo_width(), root.winfo_height()
+    x = int((root.winfo_screenwidth() / 2) - (width / 2))
+    y = int((root.winfo_screenheight() / 2) - (height / 2))
+
     # Set a minsize for the window, and place it in the middle
-    root.update()
-    root.minsize(root.winfo_width(), root.winfo_height())
-    x_cordinate = int((root.winfo_screenwidth() / 2) - (root.winfo_width() / 2))
-    y_cordinate = int((root.winfo_screenheight() / 2) - (root.winfo_height() / 2))
-    root.geometry("+{}+{}".format(x_cordinate, y_cordinate - 20))
+    root.minsize(width, height)
+    root.geometry(f"+{x}+{y}")
 
     root.mainloop()
+
+
+if __name__ == "__main__":
+    main()

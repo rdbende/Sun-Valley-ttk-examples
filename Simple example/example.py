@@ -1,21 +1,17 @@
-"""
-Example script for testing the Sun Valley theme
-Author: rdbende
-License: GNU GPLv3 license
-Source: https://github.com/rdbende/ttk-widget-factory
-"""
-
+"""Source: https://github.com/rdbende/ttk-widget-factory"""
 
 import tkinter as tk
 from tkinter import ttk
 
+import sv_ttk
+
 
 class App(ttk.Frame):
     def __init__(self, parent):
-        ttk.Frame.__init__(self)
+        ttk.Frame.__init__(self, parent)
 
         # Make the app responsive
-        for index in [0, 1, 2]:
+        for index in (0, 1, 2):
             self.columnconfigure(index=index, weight=1)
             self.rowconfigure(index=index, weight=1)
 
@@ -32,7 +28,7 @@ class App(ttk.Frame):
         self.var_4 = tk.StringVar(value=self.option_menu_list[1])
         self.var_5 = tk.DoubleVar(value=75.0)
 
-        # Create widgets :)
+        # Create widgets
         self.setup_widgets()
 
     def setup_widgets(self):
@@ -173,10 +169,11 @@ class App(ttk.Frame):
         # Treeview
         self.treeview = ttk.Treeview(
             self.pane_1,
-            selectmode="browse",
-            yscrollcommand=self.scrollbar.set,
-            columns=(1, 2),
+            columns=("1", "2"),
             height=10,
+            selectmode="browse",
+            show=("tree",),
+            yscrollcommand=self.scrollbar.set,
         )
         self.treeview.pack(expand=True, fill="both")
         self.scrollbar.config(command=self.treeview.yview)
@@ -217,15 +214,17 @@ class App(ttk.Frame):
 
         # Insert treeview data
         for item in treeview_data:
+            parent, iid, text, values = item
             self.treeview.insert(
-                parent=item[0], index="end", iid=item[1], text=item[2], values=item[3]
+                parent=parent, index="end", iid=iid, text=text, values=values
             )
-            if item[0] == "" or item[1] in {8, 21}:
-                self.treeview.item(item[1], open=True)  # Open parents
+
+            if not parent or iid in {8, 21}:
+                self.treeview.item(iid, open=True)  # Open parents
 
         # Select and scroll
-        self.treeview.selection_set(10)
-        self.treeview.see(7)
+        self.treeview.selection_set("10")
+        self.treeview.see("7")
 
         # Notebook, pane #2
         self.pane_2 = ttk.Frame(self.paned, padding=5)
@@ -237,7 +236,7 @@ class App(ttk.Frame):
 
         # Tab #1
         self.tab_1 = ttk.Frame(self.notebook)
-        for index in [0, 1]:
+        for index in (0, 1):
             self.tab_1.columnconfigure(index=index, weight=1)
             self.tab_1.rowconfigure(index=index, weight=1)
         self.notebook.add(self.tab_1, text="Tab 1")
@@ -248,7 +247,7 @@ class App(ttk.Frame):
             from_=100,
             to=0,
             variable=self.var_5,
-            command=lambda event: self.var_5.set(self.scale.get()),
+            command=lambda _: self.var_5.set(self.scale.get()),
         )
         self.scale.grid(row=0, column=0, padx=(20, 10), pady=(20, 0), sticky="ew")
 
@@ -280,22 +279,27 @@ class App(ttk.Frame):
         self.sizegrip.grid(row=100, column=100, padx=(0, 5), pady=(0, 5))
 
 
-if __name__ == "__main__":
+def main():
     root = tk.Tk()
     root.title("Simple example")
 
-    # Simply set the theme
-    root.tk.call("source", "sun-valley.tcl")
-    root.tk.call("set_theme", "light")
+    sv_ttk.set_theme("dark")
 
     app = App(root)
     app.pack(fill="both", expand=True)
 
+    root.update_idletasks()  # Make sure every screen redrawing is done
+
+    width, height = root.winfo_width(), root.winfo_height()
+    x = int((root.winfo_screenwidth() / 2) - (width / 2))
+    y = int((root.winfo_screenheight() / 2) - (height / 2))
+
     # Set a minsize for the window, and place it in the middle
-    root.update()
-    root.minsize(root.winfo_width(), root.winfo_height())
-    x_cordinate = int((root.winfo_screenwidth() / 2) - (root.winfo_width() / 2))
-    y_cordinate = int((root.winfo_screenheight() / 2) - (root.winfo_height() / 2))
-    root.geometry("+{}+{}".format(x_cordinate, y_cordinate))
+    root.minsize(width, height)
+    root.geometry(f"+{x}+{y}")
 
     root.mainloop()
+
+
+if __name__ == "__main__":
+    main()
