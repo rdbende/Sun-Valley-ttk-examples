@@ -1,4 +1,4 @@
-'''Simple Calculator with Sun Valley Theme'''
+'''Simple Stopwatch with Sun Valley Theme'''
 
 from tkinter import *
 from tkinter.ttk import *
