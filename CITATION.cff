@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+authors: 
+- name: rdbende
+title: Sun Valley ttk examples
+abstract: Examples for my stunning Sun Valley ttk theme!
+license: GPL-3.0
+date-released: 2021-07-28
+url: https://github.com/rdbende/Sun-Valley-ttk-examples
